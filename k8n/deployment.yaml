@@ -1,0 +1,27 @@
+---
+  # NOT WORKING
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: hello-go
+  labels:
+    run: hello-go
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: hello-go
+  template:
+    metadata:
+      labels:
+        run: hello-go
+    spec:
+      containers:
+      - name: hello-go
+        image: hello-go:v1
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        imagePullPolicy: Always
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
